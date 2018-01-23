@@ -11,8 +11,16 @@
 using namespace std;
 
 int main() {
-
+	//test sorting by process number
 	loadData("./out/testIn.txt");
 	sortData(PROCESS_NUMBER);
-	saveData("./out/testOut.txt");
+	saveData("./out/sortedProcess.txt");
+	//test sorting by CPU time
+	loadData("./out/testIn.txt");
+	sortData(CPU_TIME);
+	saveData("./out/sortedCPU.txt");
+	//test sorting by Start time
+	loadData("./out/testIn.txt");
+	sortData(START_TIME);
+	saveData("./out/sortedStart.txt");
 }
