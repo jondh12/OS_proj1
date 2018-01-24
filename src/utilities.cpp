@@ -10,21 +10,25 @@
 #include <vector>
 #include <algorithm>
 
-std::vector<process_stats> v;
+typedef std::vector<process_stats> vector;
+vector v;
 
+//Sorts the vector v by cpu time
 bool sortCPU(process_stats a, process_stats b) {
 	return a.cpu_time < b.cpu_time;
-
+	//Sorts the vector v by start time
 }
 bool sortStart(process_stats a, process_stats b) {
 	return a.start_time < b.start_time;
-
+	//Sorts the vector v by process number
 }
 bool sortProcess(process_stats a, process_stats b) {
 	return a.process_number < b.process_number;
 
 }
 
+
+//loads data from the filename and returns a int code detailing sucess or not
 int loadData(const char* filename) {
 	std::ifstream myfile;
 	myfile.open(filename);
@@ -63,6 +67,7 @@ int loadData(const char* filename) {
 
 }
 
+// adds item to write out to the file
 std::string addItem(int a, bool addComma) {
 	std::string toReturn;
 	toReturn += std::to_string(a);
@@ -72,6 +77,7 @@ std::string addItem(int a, bool addComma) {
 	return toReturn;
 }
 
+// writes contents of data to the filename
 int saveData(const char* filename) {
 	std::ofstream myfile;
 	myfile.open(filename);
@@ -94,7 +100,7 @@ int saveData(const char* filename) {
 	return SUCCESS;
 
 }
-
+// sorts the data based upon the sort order given
 void sortData(SORT_ORDER mySortOrder) {
 	switch (mySortOrder) {
 	case CPU_TIME:
@@ -109,7 +115,7 @@ void sortData(SORT_ORDER mySortOrder) {
 	}
 
 }
-
+// returns the first item of the data and removes it from storage
 process_stats getNext() {
 	process_stats temp = v.at(0);
 	v.erase(v.begin());
